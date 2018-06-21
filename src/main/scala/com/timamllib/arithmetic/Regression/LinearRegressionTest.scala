@@ -49,9 +49,11 @@ object LinearRegressionTest {
     val conf = new SparkConf().setAppName("regression").setMaster("local[4]")
     val sc = new SparkContext(conf)
     //文件名
-    val file_bike = "hour_nohead.csv"
+    val file_bike = "data/mllib/bikeShare/hour.csv"
     //调用二元向量化方法
     val labeled_file = labeledFile(file_bike, sc)
+
+    labeled_file.foreach(x=>println(x))
     /*/*对目标值取对数*/
     val labeled_file1=labeled_file.map(point => LabeledPoint(math.log(point.label),point.features))
     */
